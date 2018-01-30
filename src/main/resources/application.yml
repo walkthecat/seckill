@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/dbtest?useSSL=false
+    username: root
+    password: 123456
+  thymeleaf:
+    cache: false #是关闭thymeleaf的缓存，不然在开发过程中修改页面不会立刻生效需要重启，生产可配置为true。
+mybatis:
+  type-aliases-package: com.jyj.seckill.entity
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+logging:
+  config: classpath:config/logback-spring.xml
+
+  #configuration:
+    # 使用jdbc的getGenertaedKeys获取数据库自增主键值
+  #  use-generated-keys: true
+    # 使用列别名替换列名 默认：true
+    # select name as title from table
+  #  use-column-label: true
+    # 开启驼峰命名转换：Table(create_time) -> Entity(createTime)
+  #  map-underscore-to-camel-case: true
