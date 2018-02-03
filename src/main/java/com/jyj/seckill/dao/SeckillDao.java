@@ -8,6 +8,7 @@ import org.springframework.cache.annotation.Cacheable;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * description:
@@ -26,7 +27,7 @@ public interface SeckillDao {
      * @return 如果影响行数>1，表示更新的记录行数
      */
     @CachePut(value = "seckillId")
-    int reduceNumber(@Param("seckillId") long seckillId,@Param("killTime") Date killTime);
+    int reduceNumber(@Param("seckillId") long seckillId, @Param("killTime") Date killTime);
 
     /**
      * 根据ID查询秒杀对象
@@ -49,5 +50,12 @@ public interface SeckillDao {
      * @param limit
      * @return
      */
-    List<Seckill> queryAll(@Param("offset") int offset,@Param("limit") int limit);
+    List<Seckill> queryAll(@Param("offset") int offset, @Param("limit") int limit);
+
+    /**
+     * 使用存储过程执行秒杀
+     *
+     * @param paramMap
+     */
+    void killByProcedure(Map<String, Object> paramMap);
 }
